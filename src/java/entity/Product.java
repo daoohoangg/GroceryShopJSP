@@ -14,16 +14,18 @@ public class Product {
     private float price;
     private String img;
     private int quanity;
+    private String description;
 
     public Product() {
     }
 
-    public Product(int id, String name, float price, String img, int quanity) {
+    public Product(int id, String name, float price, String img, int quanity, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.img = img;
         this.quanity = quanity;
+        this.description = description;
     }
 
     public int getId() {
@@ -67,9 +69,17 @@ public class Product {
         
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", img=" + img + ", quanity=" + quanity + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", img=" + img + ", quanity=" + quanity + ", description = "+description+'}';
     }
     
 }

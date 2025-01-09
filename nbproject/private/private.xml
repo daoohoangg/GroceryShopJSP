@@ -11,12 +11,15 @@
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/CategoryControl.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/Detail.jsp</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/conf/MANIFEST.MF</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/js/script.js</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/HomeControl.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/META-INF/context.xml</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/Home.jsp</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/SignIn.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/css/style.css</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/SignIn.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/Category.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/DetailControl.java</file>
         </group>
     </open-files>
 </project-private>

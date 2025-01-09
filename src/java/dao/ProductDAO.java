@@ -31,7 +31,8 @@ public class ProductDAO {
                 rs.getString(2),
                 rs.getFloat(3),
                 rs.getString(4),
-                rs.getInt(5)));
+                rs.getInt(5),
+                rs.getString(6)));
             }
         } catch (Exception e) {
         }
@@ -51,11 +52,33 @@ public class ProductDAO {
                 rs.getString(2),
                 rs.getFloat(3),
                 rs.getString(4),
-                rs.getInt(5)));
+                rs.getInt(5),
+                rs.getString(6)));
             }
         } catch (Exception e) {
         }
         return list;
+    }
+    public List<Product> getImgProductByID(String pid){
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM ProductDetail where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, pid);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                list.add(new Product(rs.getInt(1),
+                rs.getString(2),
+                rs.getFloat(3),
+                rs.getString(4),
+                rs.getInt(5),
+                rs.getString(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+        
     }
     public List<Product> getProductsByCategoryID(String cid){
         List<Product> list = new ArrayList<>();
@@ -70,7 +93,8 @@ public class ProductDAO {
                 rs.getString(2),
                 rs.getFloat(3),
                 rs.getString(4),
-                rs.getInt(5)));
+                rs.getInt(5),
+                rs.getString(6)));
             }
         } catch (Exception e) {
         }
@@ -95,7 +119,7 @@ public class ProductDAO {
     }
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.getProductsByProductID("1");
+        List<Product> list = productDAO.getImgProductByID("1");
         for (Product category : list) {
             System.out.println(category);
         }

@@ -35,9 +35,9 @@ public class DetailControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String proID = request.getParameter("dpid");
         ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.getProductsByProductID(proID);
+        List<Product> listP = productDAO.getProductsByProductID(proID);
         
-        request.setAttribute("listP", list);
+        request.setAttribute("listP", listP);
         request.getRequestDispatcher("Detail.jsp").forward(request, response);     
     } 
 
