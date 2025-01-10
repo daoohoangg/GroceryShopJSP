@@ -153,7 +153,7 @@
 
                 <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                     <div class="main-logo">
-                        <a href="index.html">
+                        <a href="/GroceryShop/home">
                             <img src="images/logo.png" alt="logo" class="img-fluid">
                         </a>
                     </div>
@@ -2477,10 +2477,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 copyright">
-                    <p>© 2023 Foodmart. All rights reserved.</p>
+                    <p>© 2025 Foodmart. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 credit-link text-start text-md-end">
-                    <p>Free HTML Template by <a href="https://templatesjungle.com/">TemplatesJungle</a> Distributed by <a href="https://themewagon">ThemeWagon</a></p>
+                    
                 </div>
             </div>
         </div>
