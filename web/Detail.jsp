@@ -68,8 +68,8 @@
                     <h2 class="mb-3">${o.name}</h2>
                     <p class="text-muted mb-4">SKU: ${o.id}</p>
                     <div class="mb-3">
-                        <span class="h4 me-2">$${o.price}</span>
-                        <span class="text-muted"><s>$${o.price * 0.8}</s></span>
+                        <span class="h4 me-2">$${o.price * 0.8}</span>
+                        <span class="text-muted"><s>$${o.price}</s></span>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-star-fill text-warning"></i>

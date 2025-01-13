@@ -5,6 +5,8 @@
 
 package controller.web;
 
+import dao.ProductDAO;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +14,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
  * @author daoho
  */
 @WebServlet(name="SignIn", urlPatterns={"/sign-in"})
-public class SignIn extends HttpServlet {
+public class SignInControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,8 +36,6 @@ public class SignIn extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         
-//        request.setAttribute("listC", listC);
-        request.getRequestDispatcher("SignIn.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,9 +63,47 @@ public class SignIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
+        String username = request.getParameter("usermail");
+        String password = request.getParameter("password");
+        
+        String nameSignUp = request.getParameter("usernameSU");
+        String userMailSignUp = request.getParameter("usermailSU");
+        String passworSignUp = request.getParameter("passwordSU");
+        try {
+            //dang nhap
+            dao.ProductDAO dao = new ProductDAO();
+            User u = dao.login(username, password);
+            if (u != null) {
+                request.getRequestDispatcher("Home.jsp").forward(request, response);
+            }else
+            {
+                request.getRequestDispatcher("SignIn.jsp").forward(request, response);
+            }       
+            //check account toi tai hay chua
+            boolean checkExisted = false;
+            List<User> list = dao.getAllAccount();
+            int i =0 ;
+            for (User acc : list) {
+                System.out.println(acc);
+                if(acc.getUserMail().equalsIgnoreCase(userMailSignUp) 
+                        || acc.getUserName().equalsIgnoreCase(nameSignUp)){
+                    i++;
+                }
+            }
+            if(i==0){
+                checkExisted = true;
+            }  
+            if(checkExisted){
+                dao.createAccount(nameSignUp, userMailSignUp, passworSignUp);
+                request.getRequestDispatcher("Home.jsp").forward(request, response);
+            }else{
+                request.getRequestDispatcher("SignIn.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+        }
     }
 
-    /** 
+    /**     
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
