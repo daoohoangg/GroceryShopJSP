@@ -412,7 +412,7 @@
                             <c:set var="counter" value="0" />
                             <c:forEach items = "${listC}" var="o">
                                 <c:if test="${counter < 10}">
-                                    <a href="category?cid= ${o.id} " class="nav-link category-item swiper-slide">
+                                    <a href="category?cid= ${o.id}" class="nav-link category-item swiper-slide">
                                         <img src="${o.categoryimg}" alt="Category Thumbnail">
                                         <h3 class="category-title">${o.name}</h3>
                                         <c:set var="counter" value="${counter + 1}" />

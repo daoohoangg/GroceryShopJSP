@@ -13,6 +13,10 @@
         <servlet-name>DetailControl</servlet-name>
         <servlet-class>controller.web.DetailControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserControl</servlet-name>
+        <servlet-class>controller.web.UserControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -24,5 +28,9 @@
     <servlet-mapping>
         <servlet-name>DetailControl</servlet-name>
         <url-pattern>/detail-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserControl</servlet-name>
+        <url-pattern>/management-user</url-pattern>
     </servlet-mapping>
 </web-app>

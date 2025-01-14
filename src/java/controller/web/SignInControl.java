@@ -6,6 +6,7 @@
 package controller.web;
 
 import dao.ProductDAO;
+import dao.UserDAO;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,7 +72,7 @@ public class SignInControl extends HttpServlet {
         String passworSignUp = request.getParameter("passwordSU");
         try {
             //dang nhap
-            dao.ProductDAO dao = new ProductDAO();
+            dao.UserDAO dao = new UserDAO();
             User u = dao.login(username, password);
             if (u != null) {
                 request.getRequestDispatcher("Home.jsp").forward(request, response);
