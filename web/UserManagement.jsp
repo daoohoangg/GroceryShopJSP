@@ -253,32 +253,32 @@
                             <div class="show-entries">
                                 <span>Show</span>
                                 <span>
-                                <form style="display: inline;" method="GET" action="/GroceryShop/management-user">
-                                    <select class="form-control" id="timeSelector" name="times" onchange="this.form.submit()">
-                                        <option value="5" ${param.times == '5' ? 'selected' : ''}>5</option>
-                                        <option value="10" ${param.times == '10' ? 'selected' : ''}>10</option>
-                                        <option value="15" ${param.times == '15' ? 'selected' : ''}>15</option>
-                                        <option value="100000" ${param.times == '100000' ? 'selected' : ''}>ALL</option>
-                                    </select>
-                                </form>
+                                    <form style="display: inline;" method="GET" action="/GroceryShop/management-user">
+                                        <select class="form-control" id="timeSelector" name="times" onchange="this.form.submit()">
+                                            <option value="5" ${param.times == '5' ? 'selected' : ''}>5</option>
+                                            <option value="10" ${param.times == '10' ? 'selected' : ''}>10</option>
+                                            <option value="15" ${param.times == '15' ? 'selected' : ''}>15</option>
+                                            <option value="100000" ${param.times == '100000' ? 'selected' : ''}>ALL</option>
+                                        </select>
+                                    </form>
                                 </span>
                                 <span>User</span>
                             </div>
                         </div>
                         <div class="col-sm-9">
                             <form style="display: inline;" method="GET" action="/GroceryShop/management-user">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                            <div class="filter-group">
-                                <label>Name</label>
-                                
-                                   <input type="text" 
-                                            id="uname" 
-                                            name="uname" 
-                                            class="form-control" 
-                                            value="${param.uname}" 
-                                            placeholder="Enter name"> 
-                                
-                            </div>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <div class="filter-group">
+                                    <label>Name</label>
+
+                                    <input type="text" 
+                                           id="uname" 
+                                           name="uname" 
+                                           class="form-control" 
+                                           value="${param.uname}" 
+                                           placeholder="Enter name"> 
+
+                                </div>
                             </form>
                             <div class="filter-group">
                                 <label>Role</label>
@@ -294,11 +294,11 @@
                             <div class="filter-group">
                                 <label>Status</label>
                                 <form style="display: inline;" method="GET" action="/GroceryShop/management-user">
-                                <select class="form-control" id="timeSelector" name="status" onchange="this.form.submit()">
-                                    <option>Any</option>
-                                    <option value="1" ${param.status == '1' ? 'selected' : ''}>Active</option>
-                                    <option value="0" ${param.status == '0' ? 'selected' : ''}>Inactive</option>
-                                </select>
+                                    <select class="form-control" id="timeSelector" name="status" onchange="this.form.submit()">
+                                        <option>Any</option>
+                                        <option value="1" ${param.status == '1' ? 'selected' : ''}>Active</option>
+                                        <option value="0" ${param.status == '0' ? 'selected' : ''}>Inactive</option>
+                                    </select>
                                 </form>
                             </div>
                             <span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -319,33 +319,33 @@
                     </thead>
                     <tbody>
                         <c:if test="${not empty listU}">
-                        <c:forEach items = "${listU}" var="o"> 
+                            <c:forEach items = "${listU}" var="o"> 
                                 <tr>
                                     <td>${o.id}</td>
                                     <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar"> ${o.userName}</a></td>
                                     <td>${o.userMail}</td>
                                     <td>${o.passWord}</td>  
                                     <td>
-                                    <c:choose>
-                                        <c:when test="${o.status}">
-                                            <span class="status text-success">&bull;</span> Active
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span class="status text-danger">&bull;</span> Inactive
-                                        </c:otherwise>
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${o.status}">
+                                                <span class="status text-success">&bull;</span> Active
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="status text-danger">&bull;</span> Inactive
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                     <td>${o.role}</td>
                                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip" id="notifyButton"><i class="material-icons visibility">&#xe8f4;</i></a></td>
-                                    <td><a href="#" class="view" title="Lock User" data-toggle="tooltip"  style="color: gray;" id="inactiveButton"><i class="material-icons vpn_key">&#xe0da;</i></a></td>
+                                    <td><a href="disableuser?uid=${o.id}" class="view" title="Lock User" data-toggle="tooltip"  style="color: gray;" id="inactiveButton"><i class="material-icons vpn_key">&#xe0da;</i></a></td>
                                     <td><a href="#" class="view" title="Edit User" data-toggle="tooltip"  style="color: #FAC67A;"><i class="material-icons build">&#xe869;</i></a></td>   
-                                    <td><a data-uid="${o.id}" href="#" class="view" title="Delete User" data-toggle="tooltip"  style="color: red;" id="deleteButton"><i class="material-icons delete_forever">&#xe92b;</i></i></a></td> 
+                                    <td><a href="delete?uid=${o.id}" class="view deleteButton" title="Delete User" data-toggle="tooltip"  style="color: red;" ><i class="material-icons delete_forever">&#xe92b;</i></i></a></td> 
                                 </tr>
-                        </c:forEach>
+                            </c:forEach>
                         </c:if>
-                       <c:if test="${empty listU}">
-                            <p>No users found.</p>
-                        </c:if>
+                        <c:if test="${empty listU}">
+                        <p>No users found.</p>
+                    </c:if>
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -364,48 +364,7 @@
                 </div>
             </div>
         </div> 
-    <script>
-        document.getElementById("deleteButton").addEventListener("click", () => {
-            // Hiển thị hộp thoại xác nhận
-            const userConfirmed = window.confirm("Bạn có chắc chắn muốn xóa user này không?");
-            
-            if (userConfirmed) {
-                const userId = document.getElementById("deleteButton").getAttribute("data-uid");
-                console.log(userId); 
-                fetch(`GroceryShop/management-user?action=delete&uid=${userId}`, {
-                    method: "POST", // Hoặc "GET" nếu phù hợp
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Dữ liệu đã được xóa thành công!");
-                        // Tùy chọn: Làm mới trang hoặc cập nhật giao diện
-                        window.location.reload();
-                    } else {
-                        alert("Có lỗi xảy ra khi xóa dữ liệu!");
-                    }
-                })
-                .catch(error => {
-                    console.error("Lỗi kết nối:", error);
-                    alert("Không thể kết nối đến server!");
-                });
-            } else {
-                // Người dùng nhấn "Cancel"
-                alert("Cancel!");
-            }
-        });
-        document.getElementById("inactiveButton").addEventListener("click", () => {
-            // Hiển thị hộp thoại xác nhận
-            const userConfirmed = window.confirm("Bạn có chắc chắn muốn inactive user này không?");
-            
-            if (userConfirmed) {
-                // Người dùng nhấn "OK"
-                alert("User đã được inactive thành công!");
-                // Thực hiện hành động xóa tại đây
-            } else {
-                // Người dùng nhấn "Cancel"
-                alert("Cancel!");
-            }
-        });
-    </script>
+        <script>
+        </script>
     </body>
 </html>  

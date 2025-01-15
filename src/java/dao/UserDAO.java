@@ -7,6 +7,7 @@ import context.DBContext;
 import entity.Category;
 import entity.Product;
 import entity.User;
+import java.awt.desktop.UserSessionEvent;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -38,7 +39,6 @@ public class UserDAO {
          } catch (Exception e) {
          }
          return userList;
-                 
      }
      public void createAccount(String name, String email, String password){
          String query = "INSERT INTO [User](username, usermail, password,status) VALUES (?,?,?,0)";
@@ -117,9 +117,19 @@ public class UserDAO {
              ps.executeQuery();
          } catch (Exception e) {
          }
-     }
+    }
     public void setInactiveAccount(int id){
-        String query = "UPDATE [user] SET status = 0 where id = ?";
+        List<User> list = getAllAccount(); 
+        User u = new User();
+        for (User user : list) {
+            if(user.getId() == id){
+                u = user;
+            }
+        }
+        String query ="";
+        if(u.getStatus() == true){
+             query = "UPDATE [user] SET status = 0 where id = ?";
+        }else  query = "UPDATE [user] SET status = 1 where id = ?";
         try {
              conn = new DBContext().getConnection();
              ps = conn.prepareStatement(query);

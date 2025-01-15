@@ -37,71 +37,70 @@ public class UserControl extends HttpServlet {
      */
     private final UserDAO userDAO = new UserDAO();
     private List<User> limitedUsers = new ArrayList<>();
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             String uID = request.getParameter("uid");
             String uName = request.getParameter("uname");
-            int times = 8;
             String timesStr = request.getParameter("times");
             String action = request.getParameter("action");
-            times = (timesStr != null || !timesStr.isBlank()) ? Integer.parseInt(timesStr) : 8;
-            System.out.println(times);
-            
+                
+            int times = 8;
+            if (timesStr != null && !timesStr.isEmpty()) {
+                times = Integer.parseInt(timesStr);
+            }
+
             List<User> listU = userDAO.getAllAccount();
-            List<User> listUByName = userDAO.searchUserByName(uName);
-            
-            //search user chua xu ly xong
-            if(!listUByName.isEmpty()){
-                limitedUsers = listU.stream()
-                    .filter(listUByName::contains)    
-                    .limit(times)
-                    .toList();
+            List<User> listUByName = (uName != null && !uName.isEmpty())
+                    ? userDAO.searchUserByName(uName)
+                    : listU;
+
+            if ("delete".equals(action)) {
+                int uid = Integer.parseInt(uID);
+                limitedUsers = deleteUserById(request, response, listU, listUByName, times,action, uid)
+                        .stream()
+                        .limit(times)
+                        .toList();
             } else {
-                    limitedUsers = listU.stream() 
-                    .limit(times)
-                    .toList();
+                limitedUsers = listUByName.stream()
+                        .limit(times)
+                        .toList();
             }
-            //xoa user
-            deleteUserById(request,response,listU,listUByName,times);
-            for (User limitedUser : listUByName) {
-                System.out.println(limitedUser);
-            }
+
             request.setAttribute("listU", limitedUsers);
             request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
         } catch (Exception e) {
-
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi xử lý yêu cầu.");
         }
-
     }
-    private List<User> deleteUserById(HttpServletRequest request, HttpServletResponse response,List<User> listU,List<User> listUByName,int times)
-            throws ServletException, IOException{
-        String action = request.getParameter("action");
-        int uID = Integer.parseInt(request.getParameter("uid"));
-        System.out.println("Action: " + request.getParameter("action"));
-        System.out.println("UID: " + request.getParameter("uid"));
+
+    private List<User> deleteUserById(HttpServletRequest request, HttpServletResponse response,
+            List<User> listU, List<User> listUByName, int times, String action, int uID)
+            throws ServletException, IOException {
+//        String action = request.getParameter("action");
+//        int uID = Integer.parseInt(request.getParameter("uid"));
+
         if ("delete".equals(action)) {
-                // Thực hiện xóa dữ liệu (giả sử xóa thành công)
-                System.out.println("Xóa dữ liệu với itemId: " + uID);
-//                int uid = Integer.parseInt(uID);
-                for (User deleteU : listU) {
-                    if(deleteU.getId() == uID){
-                        userDAO.deleteAccount(uID);
-                    }
-                }
-                response.setStatus(HttpServletResponse.SC_OK); // 200 OK
-                return limitedUsers = listU.stream()
-//                    .filter(listUByName::contains)    
+            System.out.println("Request action: " + request.getParameter("action"));
+            System.out.println("Request uid: " + request.getParameter("uid"));
+            userDAO.deleteAccount(uID);
+            listU = userDAO.getAllAccount();
+            listUByName = (listUByName != null && !listUByName.isEmpty())
+                    ? listUByName
+                    : listU;
+
+            limitedUsers = listUByName.stream()
                     .limit(times)
                     .toList();
-                
-            } else {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400 Bad Request
-                return null;
-            }
+            response.setStatus(HttpServletResponse.SC_OK);
+            return limitedUsers;
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return null;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

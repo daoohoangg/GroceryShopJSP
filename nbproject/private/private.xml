@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/context/DBContext.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/DeleteUser.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/WEB-INF/web.xml</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/dao/ProductDAO.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/Product.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/CategoryControl.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/DisableUser.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/Detail.jsp</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/dao/UserDAO.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/UserManagement.jsp</file>
