@@ -6,10 +6,6 @@
         <servlet-class>controller.web.HomeControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SignIn</servlet-name>
-        <servlet-class>controller.web.SignInControl</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DetailControl</servlet-name>
         <servlet-class>controller.web.DetailControl</servlet-class>
     </servlet>
@@ -20,10 +16,6 @@
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SignIn</servlet-name>
-        <url-pattern>/sign-in</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DetailControl</servlet-name>

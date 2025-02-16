@@ -48,7 +48,7 @@ public class UserDAO {
              ps.setString(1, name);
              ps.setString(2, email);
              ps.setString(3, password);
-             ps.executeQuery();
+             ps.executeUpdate();
          } catch (Exception e) {
          }
      }

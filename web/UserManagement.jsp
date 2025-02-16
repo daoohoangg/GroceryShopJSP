@@ -339,7 +339,7 @@
                                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip" id="notifyButton"><i class="material-icons visibility">&#xe8f4;</i></a></td>
                                     <td><a href="disableuser?uid=${o.id}" class="view" title="Lock User" data-toggle="tooltip"  style="color: gray;" id="inactiveButton"><i class="material-icons vpn_key">&#xe0da;</i></a></td>
                                     <td><a href="#" class="view" title="Edit User" data-toggle="tooltip"  style="color: #FAC67A;"><i class="material-icons build">&#xe869;</i></a></td>   
-                                    <td><a href="delete?uid=${o.id}" class="view deleteButton" title="Delete User" data-toggle="tooltip"  style="color: red;" ><i class="material-icons delete_forever">&#xe92b;</i></i></a></td> 
+                                    <td><a href="delete?uid=${o.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa user này?')" class="view deleteButton" title="Delete User" data-toggle="tooltip"  style="color: red;" ><i class="material-icons delete_forever">&#xe92b;</i></i></a></td> 
                                 </tr>
                             </c:forEach>
                         </c:if>

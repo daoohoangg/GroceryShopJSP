@@ -84,8 +84,8 @@ public class UserControl extends HttpServlet {
 //        int uID = Integer.parseInt(request.getParameter("uid"));
 
         if ("delete".equals(action)) {
-            System.out.println("Request action: " + request.getParameter("action"));
-            System.out.println("Request uid: " + request.getParameter("uid"));
+//            System.out.println("Request action: " + request.getParameter("action"));
+//            System.out.println("Request uid: " + request.getParameter("uid"));
             userDAO.deleteAccount(uID);
             listU = userDAO.getAllAccount();
             listUByName = (listUByName != null && !listUByName.isEmpty())
