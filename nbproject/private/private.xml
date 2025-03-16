@@ -3,27 +3,65 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/context/DBContext.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/reviewer-3.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/chocolat/left.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/icon-animal-products-drumsticks.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/product-thumb-12.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/UserManagement.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/bg-leaves-pattern.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/ProductDetail.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/hightlight-product.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/footer.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/config-header.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/slide-1.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/post-thumb-1.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/suggest-other-detail.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/reviewer-2.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/product-thumb-13.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/SignIn.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/ad-image-1.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/singel-product-item.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/ad-image-3.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-raspberries.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/bg-light.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-junk.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-biscuits.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/Account.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/ad-image-2.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/SignUpControl.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/HomeControl.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/chocolat/fullscreen.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/UserControl.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/DeleteUser.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/banner-image-2.jpg</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/dao/ProductDAO.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/chocolat/right.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/bg-pattern-2.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/product-thumb-1.png</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/Product.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/Detail.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-tuna.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/slide-4.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/app-store.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/best-selling-product.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/SignInControl.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/header.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/chocolat/loader.gif</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/Category.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/context/DBContext.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/dao/ProductDAO.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/CategoryControl.java</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/DisableUser.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/Detail.jsp</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-bananas.png</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/dao/UserDAO.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/UserManagement.jsp</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/HomeControl.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/services/AccountService.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/SignUpControl.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/ProductDetail.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/SignInControl.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/User.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/UserControl.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/icon-vegetables-broccoli.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-orange-juice.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/product-thumb-11.jpg</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/product-thumb-2.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/thumb-tomatoketchup.png</file>
             <file>file:/D:/Ky4/PRJ301/GroceryShop/web/Home.jsp</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/SignIn.jsp</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/entity/Category.java</file>
-            <file>file:/D:/Ky4/PRJ301/GroceryShop/src/java/controller/web/DetailControl.java</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/images/chocolat/close.png</file>
+            <file>file:/D:/Ky4/PRJ301/GroceryShop/web/inc/most-popular-product.jsp</file>
         </group>
     </open-files>
 </project-private>

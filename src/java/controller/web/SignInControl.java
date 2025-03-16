@@ -6,7 +6,7 @@
 package controller.web;
 
 import dao.UserDAO;
-import entity.User;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -45,8 +45,9 @@ public class SignInControl extends HttpServlet {
         try {
 //            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
             //dang nhap 
-            User u = dao.login(username, password);
-//            System.out.println(u);
+            Account u = dao.login(username, password);
+//            System.out.println(u);    
+            session.setAttribute(username, password);
 //            System.out.println(username);
 //            System.out.println(password);
             if (u == null) {

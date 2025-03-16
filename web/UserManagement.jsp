@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<%@page import="entity.Account, dao.UserDAO" %>
+<%@page import="java.util.List, java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -232,8 +235,31 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                $(".editBtn").on("click", function () {
+                    let row = $(this).closest("tr"); // Hàng chứa user
+                    let formRow = row.next(".editForm"); // Hàng form kế tiếp
+
+                    // Hiển thị/ẩn form chỉnh sửa
+                    formRow.toggle();
+                });
+
+                $(".closeForm").on("click", function () {
+                    $(this).closest(".editForm").hide();
+                });
+
+                $(".togglePassword").on("click", function () {
+                    let passwordField = $(this).prev(".password");
+                    let type = passwordField.attr("type") === "password" ? "text" : "password";
+                    passwordField.attr("type", type);
+                });
+            });
+
+        </script>
     </head>
     <body>
+        <%--<jsp:include page="inc/header.jsp" />--%>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -336,10 +362,36 @@
                                         </c:choose>
                                     </td>
                                     <td>${o.role}</td>
-                                    <td><a href="#" class="view" title="View Details" data-toggle="tooltip" id="notifyButton"><i class="material-icons visibility">&#xe8f4;</i></a></td>
-                                    <td><a href="disableuser?uid=${o.id}" class="view" title="Lock User" data-toggle="tooltip"  style="color: gray;" id="inactiveButton"><i class="material-icons vpn_key">&#xe0da;</i></a></td>
-                                    <td><a href="#" class="view" title="Edit User" data-toggle="tooltip"  style="color: #FAC67A;"><i class="material-icons build">&#xe869;</i></a></td>   
+                                    <td><a href="#" class="view" title="View Details"><i class="material-icons visibility">&#xe8f4;</i></a></td>
+                                    <td><a href="disableuser?uid=${o.id}" class="view" title="Lock User" style="color: gray;"><i class="material-icons vpn_key">&#xe0da;</i></a></td>
+                                    <td><button class="editBtn btn btn-primary" data-userid="${o.id}"><a href="?uid=${o.id}"><i class="material-icons build">&#xe869;</i></a></button></td>
                                     <td><a href="delete?uid=${o.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa user này?')" class="view deleteButton" title="Delete User" data-toggle="tooltip"  style="color: red;" ><i class="material-icons delete_forever">&#xe92b;</i></i></a></td> 
+                                <tr class="editForm" style="display: none;">
+                                    <td colspan="4">
+                                        <h2>Chỉnh sửa thông tin</h2>
+
+                                        <form class="userForm" method="post" action="update?uid=${o.id}">
+                                            <label>Tên User:
+                                                <%--<%= a.getUserName()%>--%>
+                                            </label>
+                                            <input type="text" name="username" class="username" value="${o.userName}" required>
+                                            <br>
+                                            <label>Email:</label>
+                                            <input type="email" name="email" class="email" value="${o.userMail}" required>
+                                            <br>    
+                                            <label>Password:</label>    
+                                            <div class="password-container">
+                                                <input type="password" name="password" class="password" value="${o.passWord}" required>
+                                                <span class="togglePassword">👁️</span>
+                                            </div>
+                                            <br>
+                                            <label>Role:</label>
+                                            <input type="text" name="role" class="role" value="${o.role}" required>
+
+                                            <button type="submit" class="btn btn-success" name="update">Lưu</button>
+                                            <button type="button" class="closeForm btn btn-danger">Đóng</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </c:if>
@@ -349,13 +401,17 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <%
+                        UserDAO userDAO = new UserDAO();
+                        int total = userDAO.totalAccounts();
+                    %>
+                    <div class="hint-text">Showing <b>5</b> out of <b><%= total %></b> entries</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item active"><a href="#">Previous</a></li>
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
                         <li class="page-item"><a href="#" class="page-link">2</a></li>
                         <li class="page-item"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
                         <li class="page-item"><a href="#" class="page-link">5</a></li>
                         <li class="page-item"><a href="#" class="page-link">6</a></li>
                         <li class="page-item"><a href="#" class="page-link">7</a></li>
@@ -364,7 +420,6 @@
                 </div>
             </div>
         </div> 
-        <script>
-        </script>
+        <%--<jsp:include page="inc/footer.jsp" />--%>
     </body>
 </html>  

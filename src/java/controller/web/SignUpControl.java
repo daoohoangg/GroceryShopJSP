@@ -5,7 +5,7 @@
 package controller.web;
 
 import dao.UserDAO;
-import entity.User;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -39,12 +39,12 @@ public class SignUpControl extends HttpServlet {
         String passworSignUp = request.getParameter("passwordSU");
         boolean checkExisted = false;
         dao.UserDAO dao = new UserDAO();
-        List<User> list = dao.getAllAccount();
+        List<Account> list = dao.getAllAccount();
         int i = 0;
         System.out.println(nameSignUp);
         System.out.println(userMailSignUp);
         System.out.println(passworSignUp);
-        for (User acc : list) {
+        for (Account acc : list) {
 //                System.out.println(acc);
             if (acc.getUserMail().equalsIgnoreCase(userMailSignUp)
                     || acc.getUserName().equalsIgnoreCase(nameSignUp)) {

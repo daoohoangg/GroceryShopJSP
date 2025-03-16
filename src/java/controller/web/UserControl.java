@@ -6,9 +6,9 @@ package controller.web;
 
 import dao.ProductDAO;
 import dao.UserDAO;
+import entity.Account;
 import entity.Category;
 import entity.Product;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -36,7 +36,7 @@ public class UserControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final UserDAO userDAO = new UserDAO();
-    private List<User> limitedUsers = new ArrayList<>();
+    private List<Account> limitedUsers = new ArrayList<>();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,11 +52,13 @@ public class UserControl extends HttpServlet {
                 times = Integer.parseInt(timesStr);
             }
 
-            List<User> listU = userDAO.getAllAccount();
-            List<User> listUByName = (uName != null && !uName.isEmpty())
+            List<Account> listU = userDAO.getAllAccount();
+            List<Account> listUByName = (uName != null && !uName.isEmpty())
                     ? userDAO.searchUserByName(uName)
                     : listU;
-
+            for (Account account : listUByName) {
+                System.out.println(account);
+            }
             if ("delete".equals(action)) {
                 int uid = Integer.parseInt(uID);
                 limitedUsers = deleteUserById(request, response, listU, listUByName, times,action, uid)
@@ -77,8 +79,8 @@ public class UserControl extends HttpServlet {
         }
     }
 
-    private List<User> deleteUserById(HttpServletRequest request, HttpServletResponse response,
-            List<User> listU, List<User> listUByName, int times, String action, int uID)
+    private List<Account> deleteUserById(HttpServletRequest request, HttpServletResponse response,
+            List<Account> listU, List<Account> listUByName, int times, String action, int uID)
             throws ServletException, IOException {
 //        String action = request.getParameter("action");
 //        int uID = Integer.parseInt(request.getParameter("uid"));

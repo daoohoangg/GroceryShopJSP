@@ -6,7 +6,6 @@ package dao;
 import context.DBContext;
 import entity.Category;
 import entity.Product;
-import entity.User;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -22,7 +21,28 @@ public class ProductDAO {
     
     public List<Product> getAllProducts(){
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM product";
+        String query = "SELECT TOP 10 * FROM product";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                list.add(new Product(rs.getInt(1),
+                rs.getString(2),
+                rs.getFloat(3),
+                rs.getString(4),
+                rs.getInt(5),
+                rs.getString(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public List<Product> get8Products(){
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT TOP 8 * FROM Product\n" +
+                        "ORDER BY id DESC;";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -121,11 +141,12 @@ public class ProductDAO {
      
      
     public static void main(String[] args) {
+        
         ProductDAO productDAO = new ProductDAO();
-//        List<User> list = productDAO.getAllAccount();
-//        for (User category : list) {
-//            System.out.println(category);
-//        }
+        List<Product> list = productDAO.get8Products();
+        for (Product p : list) {
+            System.out.println(p);
+        }
 //        User u = productDAO.login("daviiddao@gmail.com", "daohoang2911!");
 //        System.out.println(u.toString());
     }

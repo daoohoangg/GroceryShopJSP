@@ -44,10 +44,11 @@
                                 event.target.classList.add('active');
                         }
         </script>
+        <jsp:include page="inc/config-header.jsp" />
     </head>
     <body>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-
+        <jsp:include page="inc/header.jsp" />
         <div class="container mt-5">
             <div class="row">
                 <!-- Product Images -->
@@ -79,8 +80,7 @@
                         <i class="bi bi-star-half text-warning"></i>
                         <span class="ms-2">4.5 (120 reviews)</span>
                     </div>
-                    <p class="mb-4">Experience premium sound quality and industry-leading noise cancellation with these wireless
-                        headphones. Perfect for music lovers and frequent travelers.</p>
+                    <p class="mb-4">${o.description}</p>
                     <div class="mb-4">
                         <h5>Color:</h5>
                         <div class="btn-group" role="group" aria-label="Color selection">
@@ -114,6 +114,9 @@
                     </c:forEach>
                 </div>
             </div>
-        </div>
+        </div>  
     </body>
+    <jsp:include page="inc/best-selling-product.jsp" />
+    <jsp:include page="inc/suggest-other-detail.jsp" />
+    <jsp:include page="inc/footer.jsp" />
 </html>
