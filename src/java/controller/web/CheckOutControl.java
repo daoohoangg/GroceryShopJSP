@@ -5,8 +5,6 @@
 
 package controller.web;
 
-import dao.UserDAO;
-import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,15 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  *
  * @author daoho
  */
-@WebServlet(name="SignInControl", urlPatterns={"/sign-in"})
-public class SignInControl extends HttpServlet {
+@WebServlet(name="CheckOutControl", urlPatterns={"/check-out"})
+public class CheckOutControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,39 +30,7 @@ public class SignInControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("usermail");
-        String password = request.getParameter("password");
-        
-        dao.UserDAO dao = new UserDAO();
-        
-        
-        HttpSession session = request.getSession();
-        try {
-//            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
-            //dang nhap 
-            Account u = dao.login(username, password);
-//            System.out.println(u);    
-            
-//            System.out.println(username);
-//            System.out.println(password);
-            if (u == null) {
-                
-                request.setAttribute("mess", "Need fill email and password correctly !");
-                request.getRequestDispatcher("SignIn.jsp").forward(request, response);
-                
-//                request.getRequestDispatcher("home").forward(request, response);
-            }else
-            {
-                session.setAttribute("username", u.getUserName());
-                response.sendRedirect("home");
-//                response.sendRedirect("sign-in");
-//                request.setAttribute("mess", "Need fill email and password correctly !");
-//                request.getRequestDispatcher("SignIn.jsp").forward(request, response);
-            }       
-            
-        } catch (Exception e) {
-        }
+        request.getRequestDispatcher("CheckOut.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

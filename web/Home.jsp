@@ -12,6 +12,7 @@
     <head>
         <title>FoodMart - Free eCommerce Grocery Store HTML Website Template</title>
         <jsp:include page="inc/config-header.jsp" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
 
@@ -70,48 +71,23 @@
         </div>
     </div>
 
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
-        <div class="offcanvas-header justify-content-center">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Your cart</span>
-                    <span class="badge bg-primary rounded-pill">3</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Growers cider</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Fresh grapes</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Heinz tomato ketchup</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
-
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-            </div>
-        </div>
+    <div class="offcanvas offcanvas-end" id="offcanvasCart">
+    <div class="offcanvas-header">
+        <h4>Your Cart</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
+    <div class="offcanvas-body">
+        <ul class="list-group mb-3" id="cart-items">
+            <li class="list-group-item text-center">Your cart is empty.</li>
+        </ul>
+        <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong id="cart-total">$0</strong>
+        </li>
+        <a href="check-out" class="w-100 btn btn-primary">Checkout</a>
+    </div>
+</div>
+
 
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
         <div class="offcanvas-header justify-content-center">
@@ -423,16 +399,14 @@
                                             <div class="col">
                                                 <div class="product-item">
                                                     <span class="badge bg-success position-absolute m-3">-30%</span>
-                                                    <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
-
                                                     <figure>
-                                                        <a href="detail-product?dpid= ${p.id}" title="Product Title">
-                                                            <img src="${p.img}"  class="tab-image">
+                                                        <a href="detail-product?dpid=${p.id}" title="Product Title">
+                                                            <img src="${p.img}" class="tab-image">
                                                         </a>
                                                     </figure>
                                                     <h3>${p.name}</h3>
-                                                    <span class="qty">1 Unit</span><span class="rating"><svg width="24" height="24" class="text-primary"><use xlink:href="#star-solid"></use></svg> 4.5</span>
-                                                    <span class="price">${p.price}</span>
+                                                    <span class="qty">${p.quanity} Unit</span>
+                                                    <span class="price">$${p.price}</span>
 
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <div class="input-group product-qty">
@@ -446,9 +420,11 @@
                                                                 <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus">
                                                                     <svg width="16" height="16"><use xlink:href="#plus"></use></svg>
                                                                 </button>
-                                                            </span>
+                                                            </span> 
                                                         </div>
-                                                        <a href="#" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></a>
+                                                        <button id="addToCartLink" class="nav-link btn-add-to-cart">
+                                                            Add to Cart <iconify-icon icon="uil:shopping-cart"></iconify-icon>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -457,11 +433,25 @@
                                     </c:forEach>
 
                                 </div>
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                        const quantityInput = document.getElementById("quantity");
+                                        const addToCartLink = document.getElementById("addToCartLink");
 
+                                        addToCartLink.addEventListener("click", function (event) {
+                                            event.preventDefault(); // Ngăn chặn điều hướng mặc định
+
+                                            const productId = addToCartLink.getAttribute("data-id");
+                                            const quantity = quantityInput.value;
+
+                                            // Cập nhật URL với số lượng sản phẩm
+                                            const url = `add-to-cart?id=${productId}&quantity=${quantity}`;
+                                            window.location.href = url; // Điều hướng đến URL mới
+                                        });
+                                    });
+                                    </script>
                                 <!-- / product-grid -->
-
-                            </div>
-
+                            </div>                             
                             <div class="tab-pane fade" id="nav-fruits" role="tabpanel" aria-labelledby="nav-fruits-tab">
 
                                 <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">

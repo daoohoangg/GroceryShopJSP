@@ -6,6 +6,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<jsp:include page="inc/header.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +49,6 @@
     </head>
     <body>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-        <jsp:include page="inc/header.jsp" />
         <div class="container mt-5">
             <div class="row">
                 <!-- Product Images -->

@@ -8,6 +8,57 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
+<script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdownMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+        
+        // Đóng menu khi click ra ngoài
+        window.onclick = function(event) {
+            if (!event.target.closest('.menu-container')) {
+                document.getElementById("dropdownMenu").style.display = "none";
+            }
+        }
+    </script>
+    <style>
+        /* CSS cơ bản */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .menu-container {
+            position: relative;
+            display: inline-block;
+        }
+        .user-icon {
+            background-color: #f8f9fa;
+            padding: 3px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            min-width: 200px;
+            z-index: 1000;
+        }
+        .menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .menu a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
  <div class="container-fluid">
             <div class="row py-3 border-bottom">
 
@@ -48,17 +99,42 @@
 
                     <ul class="d-flex justify-content-end list-unstyled m-0">
                         <li>
-                            <a href="sign-in" class="rounded-circle bg-light p-2 mx-1">
-                                <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
-                            </a>
+                            <div class="menu-container">
+                                <a class="user-icon" onclick="toggleMenu()" class="rounded-circle bg-light p-2 mx-1">
+                                    <svg width="20" height="20" viewBox="0 0 20 20">
+                                        <use xlink:href="#user"></use>
+                                    </svg>
+                                </a>
+
+                                <div class="menu" id="dropdownMenu">
+                                    <%
+                                        String username = (String) session.getAttribute("username");
+                                        if (username != null) {
+                                    %>
+                                            <p>Xin chào, <%= username %>!</p>
+                                    <%
+                                        } else {
+                                    %>
+                                            <p>Vui lòng đăng nhập!</p>
+                                    <%
+                                        }
+                                    %>
+                                    <a href="sign-in">🔑 Đăng nhập</a>
+                                    <a href="sign-up">📝 Đăng ký</a>
+                                    <a href="cart">🛒 Giỏ hàng</a>
+                                    <a href="management-user">⚙️ Cài đặt</a>
+                                    <a href="check-out">💳 Thanh toán</a>
+                                    <a href="my-account">👤 Tài khoản của tôi</a>
+                                </div>
+                            </div>
                         </li>
                         <li>
-                            <a href="#" class="rounded-circle bg-light p-2 mx-1">
+                            <a href="wish-list" class="rounded-circle bg-light p-2 mx-1" style="padding-top: 1vh;" >
                                 <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
                             </a>
                         </li>
                         <li class="d-lg-none">
-                            <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <a href="cart" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                 <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
                             </a>
                         </li>

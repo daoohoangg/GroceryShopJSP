@@ -5,8 +5,7 @@
 
 package controller.web;
 
-import dao.UserDAO;
-import entity.Account;
+import dto.CartDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,15 +13,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.List;
-
+import java.util.*;
+import org.json.JSONObject;
 /**
  *
  * @author daoho
  */
-@WebServlet(name="SignInControl", urlPatterns={"/sign-in"})
-public class SignInControl extends HttpServlet {
+@WebServlet(name="CartControl", urlPatterns={"/add-to-cart"})
+public class CartControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,39 +32,7 @@ public class SignInControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("usermail");
-        String password = request.getParameter("password");
         
-        dao.UserDAO dao = new UserDAO();
-        
-        
-        HttpSession session = request.getSession();
-        try {
-//            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
-            //dang nhap 
-            Account u = dao.login(username, password);
-//            System.out.println(u);    
-            
-//            System.out.println(username);
-//            System.out.println(password);
-            if (u == null) {
-                
-                request.setAttribute("mess", "Need fill email and password correctly !");
-                request.getRequestDispatcher("SignIn.jsp").forward(request, response);
-                
-//                request.getRequestDispatcher("home").forward(request, response);
-            }else
-            {
-                session.setAttribute("username", u.getUserName());
-                response.sendRedirect("home");
-//                response.sendRedirect("sign-in");
-//                request.setAttribute("mess", "Need fill email and password correctly !");
-//                request.getRequestDispatcher("SignIn.jsp").forward(request, response);
-            }       
-            
-        } catch (Exception e) {
-        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -90,10 +56,38 @@ public class SignInControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private List<CartDTO> cart = new ArrayList<>();
+     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+    
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        cart.add(new CartDTO(id, name, price, quantity));
+
+        // Tạo HTML giỏ hàng mới
+        StringBuilder cartHtml = new StringBuilder();
+        double total = 0;
+        for (CartDTO item : cart) {
+            cartHtml.append("<li class='list-group-item d-flex justify-content-between'>")
+                    .append("<div><h6 class='my-0'>" + item.getName() + "</h6></div>")
+                    .append("<span>$" + (item.getPrice() * item.getQuantity()) + "</span></li>");
+            total += item.getPrice() * item.getQuantity();
+        }
+
+        JSONObject jsonResponse = new JSONObject();
+        jsonResponse.put("cartHtml", cartHtml.toString());
+        jsonResponse.put("cartTotal", total);
+
+        response.setContentType("application/json");
+        response.getWriter().write(jsonResponse.toString());
+        
+        request.setAttribute("listC", cart);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);  
     }
 
     /** 

@@ -42,7 +42,7 @@
                         <div class="product-item swiper-slide">
                             <a href="#" class="btn-wishlist"><svg width="24" height="24"><use xlink:href="#heart"></use></svg></a>
                             <figure>
-                                <a href="index.html" title="Product Title">
+                                <a href="detail-product?dpid= <%= p.getId()%>"href="index.html" title="Product Title">
                                     <img src="<%=p.getImg()%>"  class="tab-image">
                                 </a>
                             </figure>
